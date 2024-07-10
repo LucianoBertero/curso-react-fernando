@@ -1,15 +1,12 @@
 import { useState } from "react";
 import "./App.css";
-import { AddCategory } from "./components/AddCategory";
-import { GifGrid } from "./components/GifGrid";
-function App() {
-  const [categories, setCategories] = useState(["One punch"]);
-  const onAddCategory = (newCategory) => {
-    if (categories.includes(newCategory)) {
-      return;
-    }
+import { AddCategory, GifGrid } from "./components";
 
-    setCategories([...categories, newCategory]); //siempre hacerlo asi no de la otra forma
+function App() {
+  const [categories, setCategories] = useState(["One Punch"]);
+  const onAddCategory = (newCategory) => {
+    if (categories.includes(newCategory)) return;
+    setCategories([newCategory, ...categories]);
   };
 
   return (
@@ -17,13 +14,9 @@ function App() {
       <h2>GiftExpert</h2>
       <AddCategory onNewCategory={(value) => onAddCategory(value)} />
 
-      <ol>
-        {categories.map((category, index) => {
-          return <li key={category}>{category}</li>;
-        })}
-      </ol>
-
-      <GifGrid></GifGrid>
+      {categories.map((category) => (
+        <GifGrid key={category} category={category} />
+      ))}
     </>
   );
 }
