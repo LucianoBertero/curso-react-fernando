@@ -1,6 +1,13 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
-export const Navbar = () => {
+export const Navbar = (props) => {
+  // const navigate = useNavigate(); //custom hook
+  console.log(props);
+
+  const onLogOut = () => {
+    console.log("LogOut");
+  };
+
   return (
     <nav className="navbar navbar-expand-sm navbar-dark bg-dark p-2">
       <Link className="navbar-brand" to="/">
@@ -32,7 +39,9 @@ export const Navbar = () => {
       <div className="navbar-collapse collapse w-100 order-3 dual-collapse2 d-flex  justify-content-end ">
         <ul className="navbar-nav ml-auto">
           <span className="na-item nav-link text-primary">Luciano</span>
-          <button className="nav-item nav-link btn">LogoOut</button>
+          <button onClick={onLogOut} className="nav-item nav-link btn">
+            LogoOut
+          </button>
         </ul>
       </div>
     </nav>
